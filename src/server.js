@@ -1,4 +1,5 @@
 require("./db/connection.js");
+const readBook = require("./db/controllers/readBook.js")
 const deleteBook = require("./db/controllers/deleteBook.js")
 const Book = require("./db/models/bookmodel.js")
 
@@ -6,6 +7,7 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+
 
 //CREATE
 app.post("/addbook", async (req, res) => {
