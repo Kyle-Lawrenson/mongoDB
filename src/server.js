@@ -35,14 +35,7 @@ app.post("/addbook", async (req, res) => {
 app.listen(5001, () => console.log("Server is listening on port 5001"));
 
 // READ
-app.get("/listbooks", async (req, res) => {
-   const result = await Book.find({})
-   const responseMessage = {
-    msg:"List of books found.", 
-    books: result
-   }
-   res.status(200).send(responseMessage);
-  });
+app.get("/listbooks", readBook)
 
 //UPDATE
 app.put("/book", async (req, res) => {
