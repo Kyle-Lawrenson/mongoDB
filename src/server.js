@@ -1,5 +1,6 @@
 require("./db/connection.js");
 const readBook = require("./db/controllers/readBook.js")
+const updateBook = require("./db/controllers/updateBook.js")
 const deleteBook = require("./db/controllers/deleteBook.js")
 const Book = require("./db/models/bookmodel.js")
 
@@ -35,29 +36,10 @@ app.post("/addbook", async (req, res) => {
 app.listen(5001, () => console.log("Server is listening on port 5001"));
 
 // READ
-app.get("/listbooks", readBook)
+app.get("/listbooks", readBook);
 
 //UPDATE
-app.put("/book", async (req, res) => {
-        const result = await Book.findOneAndUpdate({
-            title: req.body.title
-        }, {
-            author: req.body.author,
-            genre: req.body.genre
-        } )
-        if (result === null) {
-            const responseMessage = {
-                msg: "Book not found"
-            }
-         res.status(400).send(responseMessage);
-        } else {
-            const responseMessage = {
-                msg:"Book has been updated.",
-                dbresponse: result
-            }
-            res.status(200).send(responseMessage);
-        }
-})
+app.put("/book", updateBook);
 
 // DELETE
 app.delete("/book", deleteBook );
