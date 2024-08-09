@@ -1,22 +1,24 @@
 const Book = require("../models/bookmodel")
-  
-  const result = await Book.findOneAndUpdate({
-            title: req.body.title
-        }, {
-            author: req.body.author,
-            genre: req.body.genre
-        } )
-        if (result === null) {
-            const responseMessage = {
-                msg: "Book not found"
-            }
-         res.status(400).send(responseMessage);
-        } else {
-            const responseMessage = {
-                msg:"Book has been updated.",
-                dbresponse: result
-            }
-            res.status(200).send(responseMessage);
-        }
 
-        module.exports = updateBook
+const updateBook = async (req, res) => {
+    const result = await Book.findOneAndUpdate({
+        title: req.body.title
+    }, {
+        author: req.body.author,
+        genre: req.body.genre
+    })
+    if (result === null) {
+        const responseMessage = {
+            msg: "Book not found"
+        }
+        res.status(400).send(responseMessage);
+    } else {
+        const responseMessage = {
+            msg: "Book has been updated.",
+            dbresponse: result
+        }
+        res.status(200).send(responseMessage);
+    }
+};
+
+module.exports = updateBook

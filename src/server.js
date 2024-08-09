@@ -1,7 +1,7 @@
 require("./db/connection.js");
-const readBook = require("./db/controllers/readBook.js")
-const updateBook = require("./db/controllers/updateBook.js")
-const deleteBook = require("./db/controllers/deleteBook.js")
+const readBook = require("./db/controllers/readBook.js");
+const updateBook = require("./db/controllers/updateBook");
+const deleteBook = require("./db/controllers/deleteBook.js");
 const Book = require("./db/models/bookmodel.js")
 
 const express = require("express");
@@ -42,4 +42,4 @@ app.get("/listbooks", readBook);
 app.put("/book", updateBook);
 
 // DELETE
-app.delete("/book", deleteBook );
+app.delete("/book", deleteBook);
